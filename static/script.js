@@ -28,17 +28,29 @@ function CreateList() {
 
     if (product1 == '' || quantity == '') {
         alert('Зачем вам "ничего" в списке?');
-    }
-    else if(localStorage.getItem(product1) !== null){
-        alert("Элемент с таким названием уже существует!");
-    }
-    else {
-
+    } else if (localStorage.getItem(product1) !== null) {
+        let action = confirm("Элемент с таким названием уже существует! Вы хотите его заменить?");
+        if (action=true) {
+            localStorage.setItem(product1, quantity);
+            loadList();
+            document.getElementById("Produсt").value = '';
+            document.getElementById("quantity").value = '';
+            document.getElementById("Produсt").focus();
+            let messageElement = document.querySelector("h3");
+            messageElement.remove();
+        }
+        else{
+            document.getElementById("Produсt").value = '';
+            document.getElementById("quantity").value = '';
+            document.getElementById("Produсt").focus();
+            let messageElement = document.querySelector("h3");
+            messageElement.remove();
+        }
+    } else {
         localStorage.setItem(product1, quantity);
         loadList();
         document.getElementById("Produсt").value = '';
         document.getElementById("quantity").value = '';
-        // Устанавливаем курсор ввода на текстовое поле "Название"
         document.getElementById("Produсt").focus();
         let messageElement = document.querySelector("h3");
         messageElement.remove();
@@ -57,24 +69,38 @@ function loadList() {
         // если <p> по совпадению есть, то пропускаем его создание
         let existingPElement = document.querySelector(`p[data-key="${key}"]`);
         if (existingPElement) {
-            continue;
+            // Если элемент существует, обновляем его содержимое
+            existingPElement.innerHTML = `Продукт: ${key}, Количество: ${value}`;
+            // Удаляем старую кнопку удаления
+            let oldDeleteButton = existingPElement.querySelector("button");
+            if (oldDeleteButton) {
+                oldDeleteButton.remove();
+            }
+            // Создаем новую кнопку удаления
+            let deleteButton = document.createElement("button");
+            deleteButton.textContent = "Удалить";
+            deleteButton.addEventListener("click", function () {
+                localStorage.removeItem(key);
+                existingPElement.remove();
+                loadList(); // Обновляем список после удаления элемента
+            });
+            existingPElement.appendChild(deleteButton);
+        } else {
+            // Если элемента нет, создаем новый
+            let pElement = document.createElement("p");
+            pElement.setAttribute("data-key", key);
+            pElement.innerHTML = `Продукт: ${key}, Количество: ${value}`;
+            let deleteButton = document.createElement("button");
+            deleteButton.textContent = "Удалить";
+            deleteButton.addEventListener("click", function () {
+                localStorage.removeItem(key);
+                pElement.remove();
+                loadList(); // Обновляем список после удаления элемента
+            });
+            pElement.appendChild(deleteButton);
+            orgDiv.parentNode.insertBefore(pElement, orgDiv.nextSibling);
         }
 
-        let pElement = document.createElement("p");
-        // Добавляем атрибут data-key для идентификации элемента
-        pElement.setAttribute("data-key", key);
-        pElement.innerHTML = `Продукт: ${key}, Количество: ${value}`;
-        let deleteButton = document.createElement("button");
-        deleteButton.textContent = "Удалить";
-        deleteButton.addEventListener("click", function () {
-            localStorage.removeItem(key);
-            pElement.remove();
-            main()
-        });
-
-        pElement.appendChild(deleteButton);
-        // добавляем <p> после orgDiv
-        orgDiv.parentNode.insertBefore(pElement, orgDiv.nextSibling);
     }
 };
 
@@ -115,7 +141,7 @@ function main() {
     } else {
         document.body.classList.remove("dark-mode");
     }
-    
+
 };
 
 main();
