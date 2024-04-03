@@ -82,25 +82,25 @@ function loadList() {
         // если <p> по совпадению есть, то пропускаем его создание
         let existingPElement = document.querySelector(`p[data-key="${key}"]`);
         if (existingPElement) {
-            // Если элемент существует, обновляем его содержимое
+            // Если элемент существует, то обновляем его содержимое
             existingPElement.innerHTML = `Продукт: ${key}, Количество: ${value}`;
-            // Удаляем старую кнопку удаления
+            // Удаляем старую кнопку удаления (иначе не работает)
             let oldDeleteButton = existingPElement.querySelector("button");
             if (oldDeleteButton) {
                 oldDeleteButton.remove();
             }
-            // Создаем новую кнопку удаления
+            // Создаем новую кнопку удаления (логично)
             let deleteButton = document.createElement("button");
             deleteButton.textContent = "Удалить";
             deleteButton.addEventListener("click", function () {
                 localStorage.removeItem(key);
                 existingPElement.remove();
                 main();
-                loadList(); // Обновляем список после удаления элемента
+                loadList();
             });
             existingPElement.appendChild(deleteButton);
         } else {
-            // Если элемента нет, создаем новый
+            // Если элемента нет, то создаем новый
             let pElement = document.createElement("p");
             pElement.setAttribute("data-key", key);
             pElement.innerHTML = `Продукт: ${key}, Количество: ${value}`;
@@ -110,7 +110,7 @@ function loadList() {
                 localStorage.removeItem(key);
                 pElement.remove();
                 main();
-                loadList(); // Обновляем список после удаления элемента
+                loadList();
             });
             pElement.appendChild(deleteButton);
             orgDiv.parentNode.insertBefore(pElement, orgDiv.nextSibling);

@@ -134,3 +134,62 @@ footer {
     background-color: #201f1f;
     color: #fff;
 }
+
+img{
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+}
+
+/* Easter */
+
+.image-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.text-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2em;
+    z-index: 1;
+    text-align: center;
+    white-space: pre-wrap;
+}
+
+#org_div4 {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+
+.k-button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgb(17, 202, 17);
+    margin-bottom: 10px;
+}
