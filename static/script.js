@@ -19,7 +19,7 @@ darkMode.addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
     sessionStorage.setItem("darkMode", document.body.classList.contains("dark-mode") ? "enabled" : "disabled");
     alertCount = alertCount + 1
-    if (alertCount == 10){
+    if (alertCount == 10) {
         alert("Остановитесь, пожалейте глаза!")
         alertCount = 0
     }
