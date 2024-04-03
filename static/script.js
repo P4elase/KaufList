@@ -28,9 +28,11 @@ function CreateList() {
 
     if (product1 == '' || quantity == '') {
         alert('Зачем вам "ничего" в списке?');
-    } else if (localStorage.getItem(product1) !== null) {
+    } 
+	else if (localStorage.getItem(product1) !== null) 
+	{
         let action = confirm("Элемент с таким названием уже существует! Вы хотите его заменить?");
-        if (action=true) {
+        if (action==true) {
             localStorage.setItem(product1, quantity);
             loadList();
             document.getElementById("Produсt").value = '';
@@ -39,14 +41,15 @@ function CreateList() {
             let messageElement = document.querySelector("h3");
             messageElement.remove();
         }
-        else{
+        if (action==false){
             document.getElementById("Produсt").value = '';
             document.getElementById("quantity").value = '';
             document.getElementById("Produсt").focus();
             let messageElement = document.querySelector("h3");
             messageElement.remove();
         }
-    } else {
+    } 
+	else {
         localStorage.setItem(product1, quantity);
         loadList();
         document.getElementById("Produсt").value = '';
