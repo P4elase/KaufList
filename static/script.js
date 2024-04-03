@@ -85,6 +85,7 @@ function loadList() {
             deleteButton.addEventListener("click", function () {
                 localStorage.removeItem(key);
                 existingPElement.remove();
+		main();
                 loadList(); // Обновляем список после удаления элемента
             });
             existingPElement.appendChild(deleteButton);
@@ -98,6 +99,7 @@ function loadList() {
             deleteButton.addEventListener("click", function () {
                 localStorage.removeItem(key);
                 pElement.remove();
+		main();
                 loadList(); // Обновляем список после удаления элемента
             });
             pElement.appendChild(deleteButton);
@@ -105,7 +107,7 @@ function loadList() {
         }
 
     }
-	main()
+	
 };
 
 function ClearAll() {
