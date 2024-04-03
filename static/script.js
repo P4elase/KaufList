@@ -26,13 +26,15 @@ function CreateList() {
     let product1 = document.getElementById("Produсt").value;
     let quantity = document.getElementById("quantity").value;
 
-    if (product1 == '' || quantity == '') {
-        alert('Зачем вам "ничего" в списке?');
-    } 
-	else if (localStorage.getItem(product1) !== null) 
-	{
+    if (quantity !== '' && product1 == '') {
+        alert('Количество не имеет значения без качества, законы диалектики напоминать не нужно?')
+    }
+    else if (product1 == '') {
+        alert('Список не карман, в него пустоту не засунешь!');
+    }
+    else if (localStorage.getItem(product1) !== null) {
         let action = confirm("Элемент с таким названием уже существует! Вы хотите его заменить?");
-        if (action==true) {
+        if (action == true) {
             localStorage.setItem(product1, quantity);
             loadList();
             document.getElementById("Produсt").value = '';
@@ -41,15 +43,15 @@ function CreateList() {
             let messageElement = document.querySelector("h3");
             messageElement.remove();
         }
-        if (action==false){
+        if (action == false) {
             document.getElementById("Produсt").value = '';
             document.getElementById("quantity").value = '';
             document.getElementById("Produсt").focus();
             let messageElement = document.querySelector("h3");
             messageElement.remove();
         }
-    } 
-	else {
+    }
+    else {
         localStorage.setItem(product1, quantity);
         loadList();
         document.getElementById("Produсt").value = '';
@@ -85,7 +87,7 @@ function loadList() {
             deleteButton.addEventListener("click", function () {
                 localStorage.removeItem(key);
                 existingPElement.remove();
-		main();
+                main();
                 loadList(); // Обновляем список после удаления элемента
             });
             existingPElement.appendChild(deleteButton);
@@ -99,7 +101,7 @@ function loadList() {
             deleteButton.addEventListener("click", function () {
                 localStorage.removeItem(key);
                 pElement.remove();
-		main();
+                main();
                 loadList(); // Обновляем список после удаления элемента
             });
             pElement.appendChild(deleteButton);
@@ -107,12 +109,12 @@ function loadList() {
         }
 
     }
-	
+
 };
 
 function ClearAll() {
     if (localStorage.length === 0) {
-        alert("Список и так пуст!")
+        alert("Нельзя удалить то, чего нет, вы же на 0 не делите?")
     }
     else {
         localStorage.clear();
