@@ -105,6 +105,7 @@ function loadList() {
         }
 
     }
+	main()
 };
 
 function ClearAll() {
