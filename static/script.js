@@ -41,6 +41,7 @@ function CreateList() {
         document.getElementById("Produсt").focus();
         let messageElement = document.querySelector("h3");
         messageElement.remove();
+        main();
         return;
     }
 
@@ -52,6 +53,7 @@ function CreateList() {
         document.getElementById("Produсt").focus();
         let messageElement = document.querySelector("h3");
         messageElement.remove();
+        main();
         return;
     }
 
