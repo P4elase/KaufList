@@ -4,6 +4,7 @@ let darkMode = document.getElementById("darkMode");
 let inputText = document.getElementById("Produсt");
 let inputNumber = document.getElementById("quantity");
 let addButton = document.getElementById("btn1");
+let alertCount = 0;
 
 button2.addEventListener("click", () => {
     ClearAll()
@@ -14,8 +15,15 @@ button1.addEventListener("click", () => {
 });
 
 darkMode.addEventListener("click", () => {
+
     document.body.classList.toggle("dark-mode");
     sessionStorage.setItem("darkMode", document.body.classList.contains("dark-mode") ? "enabled" : "disabled");
+    alertCount = alertCount + 1
+    if (alertCount == 10){
+        alert("Остановитесь, пожалейте глаза!")
+        alertCount = 0
+    }
+
 });
 
 inputText.addEventListener('keydown', handleEnterKey);
