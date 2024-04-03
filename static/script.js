@@ -27,19 +27,34 @@ darkMode.addEventListener("click", () => {
 });
 
 inputText.addEventListener('keydown', handleEnterKey);
-
 inputNumber.addEventListener('keydown', handleEnterKey);
 
 function CreateList() {
-    let product1 = document.getElementById("Produсt").value;
-    let quantity = document.getElementById("quantity").value;
+    let product1 = document.getElementById("Produсt").value.trim();
+    let quantity = document.getElementById("quantity").value.trim();
 
     if (quantity !== '' && product1 == '') {
         alert('Количество не имеет значения без качества, законы диалектики напоминать не нужно?')
+        loadList();
+        document.getElementById("Produсt").value = '';
+        document.getElementById("quantity").value = '';
+        document.getElementById("Produсt").focus();
+        let messageElement = document.querySelector("h3");
+        messageElement.remove();
+        return;
     }
-    else if (product1 == '') {
-        alert('Список не карман, в него пустоту не засунешь!');
+
+    if (!product1.length) {
+        alert('Список не карман, в него пустоту не засунешь! Но Вы, однозначно, шли к успеху!');
+        loadList();
+        document.getElementById("Produсt").value = '';
+        document.getElementById("quantity").value = '';
+        document.getElementById("Produсt").focus();
+        let messageElement = document.querySelector("h3");
+        messageElement.remove();
+        return;
     }
+
     else if (localStorage.getItem(product1) !== null) {
         let action = confirm("Элемент с таким названием уже существует! Вы хотите его заменить?");
         if (action == true) {
@@ -122,7 +137,7 @@ function loadList() {
 
 function ClearAll() {
     if (localStorage.length === 0) {
-        alert("Нельзя удалить то, чего нет, вы же на 0 не делите?")
+        alert("Нельзя удалить то, чего нет, Вы же на 0 не делите?")
     }
     else {
         localStorage.clear();

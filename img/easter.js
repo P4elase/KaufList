@@ -13,17 +13,19 @@ let KonamiKode = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "
 let nextKey = 0;
 let buttonsContainer = document.getElementById('org_div4');
 
-document.addEventListener("keydown", function(e){
+document.addEventListener("keydown", function (e) {
     if (e.key == KonamiKode[nextKey]) {
         nextKey++;
         if (nextKey == KonamiKode.length) {
             nextKey = 0;
-            alert("Код Konami введен, и мы оказываемся в новом мире, где все, что мы знаем, может быть иллюзией. Погружаемся в историю Стэнли, где каждый выбор имеет последствия, и реальность может быть не тем, что кажется.");
+            alert("Это был КК (конами код), Вы сами до этого додумались? Перебрали все комбинации и последовательности клавиш? Считерили и заглянули в исходники?");
+            alert("Ну это уже неважно. Что ж, любитель нажимать на кнопочки, сейчас я расскажу тебе одну поучительную историю.");
+            DoFullScreen(document.documentElement);
             document.querySelector('body').innerHTML = '';
             document.querySelector('body').innerHTML = '<div class="image-container"><img src="img/end.png" alt="..."><div class="text-overlay"></div></div>';
-            setTimeout(function() {
+            setTimeout(function () {
                 displayText(storyText);
-            }, 3000);
+            }, 2000);
         } else {
             let button = document.createElement('div');
             button.className = 'k-button';
@@ -35,10 +37,33 @@ document.addEventListener("keydown", function(e){
     }
 });
 
+function DoFullScreen(el) {
+    if (isFullScreen()) return false;
+    if (el === undefined) el = document.documentElement;
+    if (document.fullscreenEnabled) {
+        el.requestFullscreen();
+    } else if (document.webkitFullscreenEnabled) {
+        el.webkitRequestFullscreen();
+    } else if (document.mozFullScreenEnabled) {
+        el.mozRequestFullScreen();
+    } else if (document.msFullscreenEnabled) {
+        el.msRequestFullscreen();
+    }
+};
+
+function isFullScreen() {
+    return Boolean(
+        document.fullscreenElement ||
+        document.webkitFullscreenElement ||
+        document.mozFullScreenElement ||
+        document.msFullscreenElement
+    );
+};
+
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
-}
+};
 
 async function displayText(text) {
     let textOverlay = document.querySelector('.text-overlay');
@@ -47,17 +72,58 @@ async function displayText(text) {
     for (let line of lines) {
         for (let char of line) {
             textOverlay.textContent += char;
-            await sleep(50); // Задержка между символами
+            await sleep(40); // Задержка между символами
         }
         textOverlay.textContent += '\n';
-        await sleep(800);
+        await sleep(700);
     }
-        textOverlay.textContent = '';
-        await sleep(1000);
-        textOverlay.textContent = 'А Вы счастливы?';
-        await sleep(5000);
-        textOverlay.textContent = '';
-        await sleep(5000);
-        location.reload();
-}
+    textOverlay.textContent = '';
+    await sleep(1000);
+    textOverlay.textContent = 'А Вы счастливы?';
+    await sleep(2000);
+    textOverlay.textContent = '';
+    await sleep(1000);
+    textOverlay.textContent = 'Вы довольны тем, чего добились?';
+    await sleep(2000);
+    textOverlay.textContent = '';
+    await sleep(5000);
+    location.reload();
+};
 
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'F12') {
+        event.preventDefault();
+        alert('Ты ужасный человек! Тебе это когда-нибудь говорили? Ладно, это шутка, мы ведь даже это не тестировали.');
+        alert('А еще тортик это миф.');
+    }
+});
+
+window.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+});
+
+document.addEventListener('keydown', function (e) {
+    if (e.altKey && e.metaKey && e.key === 'i') {
+        preventDefault();
+        alert('Зачем, зачем Вы пытаетесь, Мистер Андерсон!');
+    }
+});
+
+document.addEventListener('keydown', function (e) {
+    if (e.altKey && e.shiftKey && e.key === 'i') {
+        preventDefault();
+        alert('Сомнительно, но окЭй. Не, ну а вдруг сработает.');
+    }
+});
+
+function goFullscreen(id) {
+    var element = document.getElementById(id);
+
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.mozRequestFullScreen) {
+        element.mozRequestFullScreen();
+    } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
+    }
+};
