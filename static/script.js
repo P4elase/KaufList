@@ -147,6 +147,7 @@ function handleEnterKey(event) {
 
 function main() {
     
+    window.onload = loadList;
 
     if (localStorage.length === 0) {
         let messageElement = document.createElement("h3");
@@ -171,6 +172,5 @@ function resetInput(){
 
 };
 
-window.onload = loadList;
 
 main();
