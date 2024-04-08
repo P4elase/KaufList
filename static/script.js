@@ -33,7 +33,9 @@ function CreateList() {
         alert('Количество не имеет значения без качества, законы диалектики напоминать не нужно?')
         loadList();
         resetInput();
-        messageElement.remove();
+        if (messageElement) {
+            messageElement.remove();
+        }
         main();
         return;
     }
@@ -42,7 +44,9 @@ function CreateList() {
         alert('Список не карман, в него пустоту не засунешь! Но Вы, однозначно, шли к успеху!');
         loadList();
         resetInput();
-        messageElement.remove();
+        if (messageElement) {
+            messageElement.remove();
+        }
         main();
         return;
     }
@@ -53,18 +57,21 @@ function CreateList() {
             localStorage.setItem(product1, quantity);
             loadList();
             resetInput();
-            messageElement.remove();
+            if (messageElement) {
+                messageElement.remove();
+            }
         }
         else {
             resetInput();
-            messageElement.remove();
         }
     }
     else {
         localStorage.setItem(product1, quantity);
         loadList();
         resetInput();
-        messageElement.remove();
+        if (messageElement) {
+            messageElement.remove();
+        }
     }
 
 };
@@ -90,7 +97,7 @@ function loadList() {
             // Создаем новую кнопку удаления
             let deleteButton = document.createElement("button");
             deleteButton.textContent = "Удалить";
-            deleteButton.setAttribute("id", "btn3");
+            deleteButton.setAttribute("class", "btn3");
             deleteButton.addEventListener("dblclick", function () {
                 localStorage.removeItem(key);
                 existingPElement.remove();
@@ -106,7 +113,7 @@ function loadList() {
             pElement.innerHTML = `Продукт: ${key}, Количество: ${value}`;
             let deleteButton = document.createElement("button");
             deleteButton.textContent = "Удалить";
-            deleteButton.setAttribute("id", "btn3");
+            deleteButton.setAttribute("class", "btn3");
             deleteButton.addEventListener("dblclick", function () {
                 localStorage.removeItem(key);
                 pElement.remove();
