@@ -101,7 +101,6 @@ function loadList() {
             }
             // Создаем новую кнопку удаления
             let deleteButton = document.createElement("button");
-            deleteButton.setAttribute('id="btn3"');
             deleteButton.textContent = "Удалить";
             deleteButton.addEventListener("dblclick", function () {
                 localStorage.removeItem(key);
@@ -117,7 +116,6 @@ function loadList() {
             pElement.setAttribute("data-key", key);
             pElement.innerHTML = `Продукт: ${key}, Количество: ${value}`;
             let deleteButton = document.createElement("button");
-            deleteButton.setAttribute('id="btn3"');
             deleteButton.textContent = "Удалить";
             deleteButton.addEventListener("dblclick", function () {
                 localStorage.removeItem(key);
