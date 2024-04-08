@@ -38,6 +38,7 @@ h2 {
 h3{
     text-align: center;
 }
+
 h4 {
     display: block;
     margin-block-start: 0.2em;
@@ -86,6 +87,10 @@ button {
 
 button:hover {
     background-color: #0056b3;
+}
+
+#btn2:hover{
+    background-color: brown;
 }
 
 #org_div0{
