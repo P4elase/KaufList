@@ -91,10 +91,86 @@ async function displayText(text) {
 };
 
 document.addEventListener('keydown', function (event) {
+    if (event.key === 'F1') {
+        event.preventDefault();
+        alert('Забавный факт- настоящее название JS это ECMAScript-JS.');
+    }
+});
+
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'F2') {
+        event.preventDefault();
+        alert('');
+    }
+});
+
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'F3') {
+        event.preventDefault();
+        alert('');
+    }
+});
+
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'F4') {
+        event.preventDefault();
+        alert('');
+    }
+});
+
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'F5') {
+        event.preventDefault();
+        alert('');
+    }
+});
+
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'F6') {
+        event.preventDefault();
+        alert('');
+    }
+});
+
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'F7') {
+        event.preventDefault();
+        alert('');
+    }
+});
+
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'F8') {
+        event.preventDefault();
+        alert('');
+    }
+});
+
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'F9') {
+        event.preventDefault();
+        alert('');
+    }
+});
+
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'F10') {
+        event.preventDefault();
+        alert('');
+    }
+});
+
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'F11') {
+        event.preventDefault();
+        alert('Тортик это миф.');
+    }
+});
+
+document.addEventListener('keydown', function (event) {
     if (event.key === 'F12') {
         event.preventDefault();
         alert('Ты ужасный человек! Тебе это когда-нибудь говорили? Ладно, это шутка, мы ведь даже это не тестировали.');
-        alert('А еще тортик это миф.');
     }
 });
 
