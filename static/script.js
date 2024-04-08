@@ -183,7 +183,7 @@ window.onload = loadList;
 main();
 
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/static/service-worker.js', { scope: '/' }).then(function (registration) {
+    navigator.serviceWorker.register('/{repository}/static/service-worker.js', { scope: '/{repository}/' }).then(function (registration) {
         console.log('Service Worker registered with scope:', registration.scope);
     })
         .catch(function (error) {
