@@ -135,7 +135,7 @@ window.addEventListener("keydown", (event) => {
         default:
             return;
     }
-
+    document.getElementsByName("body").focus();
     event.preventDefault();
 }, true);
 
