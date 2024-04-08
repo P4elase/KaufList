@@ -5,6 +5,10 @@ let inputText = document.getElementById("Produсt");
 let inputNumber = document.getElementById("quantity");
 let addButton = document.getElementById("btn1");
 let alertCount = 0;
+let messageElement = document.querySelector("h3");
+
+inputText.addEventListener('keydown', handleEnterKey);
+inputNumber.addEventListener('keydown', handleEnterKey);
 
 button2.addEventListener("click", () => {
     ClearAll()
@@ -26,9 +30,6 @@ darkMode.addEventListener("click", () => {
 
 });
 
-inputText.addEventListener('keydown', handleEnterKey);
-inputNumber.addEventListener('keydown', handleEnterKey);
-
 function CreateList() {
     let product1 = document.getElementById("Produсt").value.trim();
     let quantity = document.getElementById("quantity").value.trim();
@@ -36,10 +37,7 @@ function CreateList() {
     if (quantity !== '' && product1 == '') {
         alert('Количество не имеет значения без качества, законы диалектики напоминать не нужно?')
         loadList();
-        document.getElementById("Produсt").value = '';
-        document.getElementById("quantity").value = '';
-        document.getElementById("Produсt").focus();
-        let messageElement = document.querySelector("h3");
+        resetInput();
         messageElement.remove();
         main();
         return;
@@ -48,10 +46,7 @@ function CreateList() {
     if (!product1.length) {
         alert('Список не карман, в него пустоту не засунешь! Но Вы, однозначно, шли к успеху!');
         loadList();
-        document.getElementById("Produсt").value = '';
-        document.getElementById("quantity").value = '';
-        document.getElementById("Produсt").focus();
-        let messageElement = document.querySelector("h3");
+        resetInput();
         messageElement.remove();
         main();
         return;
@@ -62,27 +57,18 @@ function CreateList() {
         if (action == true) {
             localStorage.setItem(product1, quantity);
             loadList();
-            document.getElementById("Produсt").value = '';
-            document.getElementById("quantity").value = '';
-            document.getElementById("Produсt").focus();
-            let messageElement = document.querySelector("h3");
+            resetInput();
             messageElement.remove();
         }
         if (action == false) {
-            document.getElementById("Produсt").value = '';
-            document.getElementById("quantity").value = '';
-            document.getElementById("Produсt").focus();
-            let messageElement = document.querySelector("h3");
+            resetInput();
             messageElement.remove();
         }
     }
     else {
         localStorage.setItem(product1, quantity);
         loadList();
-        document.getElementById("Produсt").value = '';
-        document.getElementById("quantity").value = '';
-        document.getElementById("Produсt").focus();
-        let messageElement = document.querySelector("h3");
+        resetInput();
         messageElement.remove();
     }
 };
@@ -106,7 +92,7 @@ function loadList() {
             if (oldDeleteButton) {
                 oldDeleteButton.remove();
             }
-            // Создаем новую кнопку удаления (логично)
+            // Создаем новую кнопку удаления
             let deleteButton = document.createElement("button");
             deleteButton.textContent = "Удалить";
             deleteButton.addEventListener("click", function () {
@@ -160,7 +146,7 @@ function handleEnterKey(event) {
 };
 
 function main() {
-    window.onload = loadList;
+    
 
     if (localStorage.length === 0) {
         let messageElement = document.createElement("h3");
@@ -176,5 +162,15 @@ function main() {
     }
 
 };
+
+function resetInput(){
+    
+    document.getElementById("Produсt").value = '';
+    document.getElementById("quantity").value = '';
+    document.getElementById("Produсt").focus();
+
+};
+
+window.onload = loadList;
 
 main();
