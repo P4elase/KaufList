@@ -103,9 +103,9 @@ function loadList() {
             let deleteButton = document.createElement("button");
             deleteButton.textContent = "Удалить";
             deleteButton.addEventListener("click", function () {
-                let action = confirm("Удалить текущую запись?")
+                let action = confirm("Удалить текущую запись?");
                 if (action == false){
-                    return;
+                    alert("Зачем тогда тыкали на кнопку?");
                 }
                 else{
                     localStorage.removeItem(key);
@@ -125,9 +125,9 @@ function loadList() {
             let deleteButton = document.createElement("button");
             deleteButton.textContent = "Удалить";
             deleteButton.addEventListener("click", function () {
-                let action = confirm("Удалить текущую запись?")
+                let action = confirm("Удалить текущую запись?");
                 if (action == false){
-                    return;
+                    alert("Зачем тогда тыкали на кнопку?");
                 }
                 else{
                     localStorage.removeItem(key);
