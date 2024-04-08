@@ -58,6 +58,15 @@
 
     <script src="static/script.js"></script>
     <script src="img/easter.js"></script>
+    <script>  if (navigator.serviceWorker) {
+            navigator.serviceWorker.register('/{repository}/static/service-worker.js', { scope: '/{repository}/' }).then(function (registration) {
+                console.log('Service Worker registered with scope:', registration.scope);
+            })
+                .catch(function (error) {
+                    console.log('Service Worker registration failed:', error);
+                });
+        }
+    </script>
 </body>
 
 </html>
