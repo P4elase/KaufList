@@ -17,6 +17,13 @@ button1.addEventListener("click", () => {
     CreateList()
 });
 
+function handleEnterKey(event) {
+    if (event.key === 'Enter') {
+        addButton.click();
+    }
+
+};
+
 darkMode.addEventListener("click", () => {
 
     document.body.classList.toggle("dark-mode");
@@ -71,13 +78,13 @@ function CreateList() {
         resetInput();
         messageElement.remove();
     }
+
 };
 
 function loadList() {
     let length = localStorage.length;
     // После этого элемента появятся новые <p>
     let orgDiv = document.getElementById("org_div1");
-
     // итерируемся по всему хранилищу
     for (let i = 0; i < length; i++) {
         let key = localStorage.key(i);
@@ -96,13 +103,14 @@ function loadList() {
             let deleteButton = document.createElement("button");
             deleteButton.textContent = "Удалить";
             deleteButton.addEventListener("click", function () {
+                
                 localStorage.removeItem(key);
                 existingPElement.remove();
                 main();
                 loadList();
             });
             existingPElement.appendChild(deleteButton);
-        } 
+        }
         else {
             // Если элемента нет, то создаем новый
             let pElement = document.createElement("p");
@@ -119,35 +127,44 @@ function loadList() {
             pElement.appendChild(deleteButton);
             orgDiv.parentNode.insertBefore(pElement, orgDiv.nextSibling);
         }
-
     }
 
 };
 
 function ClearAll() {
     if (localStorage.length === 0) {
-        alert("Нельзя удалить то, чего нет, Вы же на 0 не делите?")
+        alert("Нельзя удалить то, чего нет, Вы же на 0 не делите?");
     }
     else {
-        localStorage.clear();
-        let pElements = document.getElementsByTagName('p');
-
-        while (pElements.length > 0) {
-            pElements[0].parentNode.removeChild(pElements[0]);
+        let action = confirm("Удалить все записи?")
+        if (action == false){
+            break;
         }
-        main();
+        else{
+            localStorage.clear();
+            let pElements = document.getElementsByTagName('p');
+    
+            while (pElements.length > 0) {
+                pElements[0].parentNode.removeChild(pElements[0]);
+            }
+            alert("Список успешно очищен!");
+            main();
+        }
+
     }
 
 };
 
-function handleEnterKey(event) {
-    if (event.key === 'Enter') {
-        addButton.click();
-    }
+function resetInput() {
+
+    document.getElementById("Produсt").value = '';
+    document.getElementById("quantity").value = '';
+    document.getElementById("Produсt").focus();
+
 };
 
 function main() {
-    
+
     loadList();
 
     if (localStorage.length === 0) {
@@ -164,14 +181,5 @@ function main() {
     }
 
 };
-
-function resetInput(){
-    
-    document.getElementById("Produсt").value = '';
-    document.getElementById("quantity").value = '';
-    document.getElementById("Produсt").focus();
-
-};
-
 
 window.onload = main;
