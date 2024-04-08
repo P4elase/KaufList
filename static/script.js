@@ -114,7 +114,6 @@ function loadList() {
                 loadList();
             });
             existingPElement.appendChild(deleteButton);
-            orgDiv.parentNode.insertBefore(pElement, orgDiv.nextSibling);
         }
         else {
             // Если элемента нет, то создаем новый
