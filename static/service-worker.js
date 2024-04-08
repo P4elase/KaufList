@@ -2,14 +2,14 @@ self.addEventListener('install', function (event) {
     event.waitUntil(
         caches.open('my-cache').then(function (cache) {
             return cache.addAll([
-                '/{repository}/',
-                '/{repository}/index.html',
-                '/{repository}/static/style.css',
-                '/{repository}/static/script.js',
-                '/{repository}/img/easter.js',
-                '/{repository}/img/end.png',
-                '/{repository}/img/bag-heart.svg',
-                '/{repository}/img/favicon.ico',
+                '/KaufList/',
+                '/KaufList/index.html',
+                '/KaufList/static/style.css',
+                '/KaufList/static/script.js',
+                '/KaufList/img/easter.js',
+                '/KaufList/img/end.png',
+                '/KaufList/img/bag-heart.svg',
+                '/KaufList/img/favicon.ico',
                 // Add other assets your app needs
             ]);
         })
