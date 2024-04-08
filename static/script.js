@@ -103,17 +103,15 @@ function loadList() {
             let deleteButton = document.createElement("button");
             deleteButton.textContent = "Удалить";
             deleteButton.addEventListener("click", function () {
-                let action = confirm("Удалить текущую запись?");
-                if (action == false){
+                let actionList = confirm("Удалить текущую запись?");
+                if (actionList == false) {
                     alert("Зачем тогда тыкали на кнопку?");
+                    return;
                 }
-                else{
-                    localStorage.removeItem(key);
-                    existingPElement.remove();
-                    main();
-                    loadList();
-                }
-
+                localStorage.removeItem(key);
+                existingPElement.remove();
+                main();
+                loadList();
             });
             existingPElement.appendChild(deleteButton);
         }
@@ -125,16 +123,15 @@ function loadList() {
             let deleteButton = document.createElement("button");
             deleteButton.textContent = "Удалить";
             deleteButton.addEventListener("click", function () {
-                let action = confirm("Удалить текущую запись?");
-                if (action == false){
+                let actionList = confirm("Удалить текущую запись?");
+                if (actionList == false) {
                     alert("Зачем тогда тыкали на кнопку?");
+                    return;
                 }
-                else{
-                    localStorage.removeItem(key);
-                    existingPElement.remove();
-                    main();
-                    loadList();
-                }
+                localStorage.removeItem(key);
+                existingPElement.remove();
+                main();
+                loadList();
             });
             pElement.appendChild(deleteButton);
             orgDiv.parentNode.insertBefore(pElement, orgDiv.nextSibling);
@@ -149,19 +146,17 @@ function ClearAll() {
     }
     else {
         let action = confirm("Удалить все записи?")
-        if (action == false){
-            alert("Список успешно НЕ очищен!");
+        if (action == false) {
+            return;
         }
-        else{
-            localStorage.clear();
-            let pElements = document.getElementsByTagName('p');
-    
-            while (pElements.length > 0) {
-                pElements[0].parentNode.removeChild(pElements[0]);
-            }
-            alert("Список успешно очищен!");
-            main();
+        localStorage.clear();
+        let pElements = document.getElementsByTagName('p');
+
+        while (pElements.length > 0) {
+            pElements[0].parentNode.removeChild(pElements[0]);
         }
+        alert("Список успешно очищен!");
+        main();
 
     }
 
