@@ -103,8 +103,8 @@ button:hover {
 }
 
 #org_div1 {
-    margin-top: 20px;
-    padding: 20px;
+    margin-top: 10px;
+    padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
     background-color: #f9f9f9;
@@ -113,8 +113,8 @@ button:hover {
 }
 
 #org_div2 {
-    margin-top: 20px;
-    padding: 20px;
+    margin-top: 10px;
+    padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
     background-color: #f9f9f9;
