@@ -102,7 +102,7 @@ function loadList() {
             // Создаем новую кнопку удаления
             let deleteButton = document.createElement("button");
             deleteButton.textContent = "Удалить";
-            deleteButton.addEventListener("click", function () {
+            deleteButton.addEventListener("dblclick", function () {
                 localStorage.removeItem(key);
                 existingPElement.remove();
                 main();
@@ -117,7 +117,7 @@ function loadList() {
             pElement.innerHTML = `Продукт: ${key}, Количество: ${value}`;
             let deleteButton = document.createElement("button");
             deleteButton.textContent = "Удалить";
-            deleteButton.addEventListener("click", function () {
+            deleteButton.addEventListener("dblclick", function () {
                 localStorage.removeItem(key);
                 pElement.remove();
                 main();
