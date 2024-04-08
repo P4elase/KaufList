@@ -32,12 +32,12 @@ darkMode.addEventListener("click", () => {
 function CreateList() {
     let product1 = document.getElementById("Produсt").value.trim();
     let quantity = document.getElementById("quantity").value.trim();
+    let messageElement = document.querySelector("h3");
 
     if (quantity !== '' && product1 == '') {
         alert('Количество не имеет значения без качества, законы диалектики напоминать не нужно?')
         loadList();
         resetInput();
-        let messageElement = document.querySelector("h3");
         messageElement.remove();
         main();
         return;
@@ -47,7 +47,6 @@ function CreateList() {
         alert('Список не карман, в него пустоту не засунешь! Но Вы, однозначно, шли к успеху!');
         loadList();
         resetInput();
-        let messageElement = document.querySelector("h3");
         messageElement.remove();
         main();
         return;
@@ -59,21 +58,18 @@ function CreateList() {
             localStorage.setItem(product1, quantity);
             loadList();
             resetInput();
-            let messageElement = document.querySelector("h3");
             messageElement.remove();
         }
         if (action == false) {
             resetInput();
-            let messageElement = document.querySelector("h3");
             messageElement.remove();
         }
     }
     else {
         localStorage.setItem(product1, quantity);
+        messageElement.remove();
         loadList();
         resetInput();
-        let messageElement = document.querySelector("h3");
-        messageElement.remove();
     }
 };
 
