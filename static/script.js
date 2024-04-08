@@ -5,7 +5,6 @@ let inputText = document.getElementById("Produсt");
 let inputNumber = document.getElementById("quantity");
 let addButton = document.getElementById("btn1");
 let alertCount = 0;
-let messageElement = document.querySelector("h3");
 
 inputText.addEventListener('keydown', handleEnterKey);
 inputNumber.addEventListener('keydown', handleEnterKey);
@@ -18,6 +17,13 @@ button1.addEventListener("click", () => {
     CreateList()
 });
 
+function handleEnterKey(event) {
+    if (event.key === 'Enter') {
+        addButton.click();
+    }
+
+};
+
 darkMode.addEventListener("click", () => {
 
     document.body.classList.toggle("dark-mode");
@@ -25,7 +31,7 @@ darkMode.addEventListener("click", () => {
     alertCount = alertCount + 1
     if (alertCount == 10) {
         alert("Остановитесь, пожалейте глаза!")
-        alertCount = 0
+        alertCount = 0;
     }
 
 });
@@ -33,6 +39,7 @@ darkMode.addEventListener("click", () => {
 function CreateList() {
     let product1 = document.getElementById("Produсt").value.trim();
     let quantity = document.getElementById("quantity").value.trim();
+    let messageElement = document.querySelector("h3");
 
     if (quantity !== '' && product1 == '') {
         alert('Количество не имеет значения без качества, законы диалектики напоминать не нужно?')
@@ -52,7 +59,7 @@ function CreateList() {
         return;
     }
 
-    else if (localStorage.getItem(product1) !== null) {
+    if (localStorage.getItem(product1) !== null) {
         let action = confirm("Элемент с таким названием уже существует! Вы хотите его заменить?");
         if (action == true) {
             localStorage.setItem(product1, quantity);
@@ -60,7 +67,7 @@ function CreateList() {
             resetInput();
             messageElement.remove();
         }
-        if (action == false) {
+        else {
             resetInput();
             messageElement.remove();
         }
@@ -71,13 +78,13 @@ function CreateList() {
         resetInput();
         messageElement.remove();
     }
+
 };
 
 function loadList() {
     let length = localStorage.length;
     // После этого элемента появятся новые <p>
     let orgDiv = document.getElementById("org_div1");
-
     // итерируемся по всему хранилищу
     for (let i = 0; i < length; i++) {
         let key = localStorage.key(i);
@@ -95,21 +102,24 @@ function loadList() {
             // Создаем новую кнопку удаления
             let deleteButton = document.createElement("button");
             deleteButton.textContent = "Удалить";
-            deleteButton.addEventListener("click", function () {
+            deleteButton.setAttribute("id", "btn3");
+            deleteButton.addEventListener("dblclick", function () {
                 localStorage.removeItem(key);
                 existingPElement.remove();
                 main();
                 loadList();
             });
             existingPElement.appendChild(deleteButton);
-        } else {
+        }
+        else {
             // Если элемента нет, то создаем новый
             let pElement = document.createElement("p");
             pElement.setAttribute("data-key", key);
             pElement.innerHTML = `Продукт: ${key}, Количество: ${value}`;
             let deleteButton = document.createElement("button");
             deleteButton.textContent = "Удалить";
-            deleteButton.addEventListener("click", function () {
+            deleteButton.setAttribute("id", "btn3");
+            deleteButton.addEventListener("dblclick", function () {
                 localStorage.removeItem(key);
                 pElement.remove();
                 main();
@@ -118,35 +128,40 @@ function loadList() {
             pElement.appendChild(deleteButton);
             orgDiv.parentNode.insertBefore(pElement, orgDiv.nextSibling);
         }
-
     }
 
 };
 
 function ClearAll() {
     if (localStorage.length === 0) {
-        alert("Нельзя удалить то, чего нет, Вы же на 0 не делите?")
+        alert("Нельзя удалить то, чего нет, Вы же на 0 не делите?");
     }
     else {
+        let action = confirm("Удалить все записи?")
+        if (action == false) {
+            return;
+        }
         localStorage.clear();
         let pElements = document.getElementsByTagName('p');
 
         while (pElements.length > 0) {
             pElements[0].parentNode.removeChild(pElements[0]);
         }
-        main()
+        main();
+        alert("Список успешно очищен!");
     }
 
 };
 
-function handleEnterKey(event) {
-    if (event.key === 'Enter') {
-        addButton.click();
-    }
+function resetInput() {
+
+    document.getElementById("Produсt").value = '';
+    document.getElementById("quantity").value = '';
+    document.getElementById("Produсt").focus();
+
 };
 
 function main() {
-    
 
     if (localStorage.length === 0) {
         let messageElement = document.createElement("h3");
@@ -160,14 +175,6 @@ function main() {
     } else {
         document.body.classList.remove("dark-mode");
     }
-
-};
-
-function resetInput(){
-    
-    document.getElementById("Produсt").value = '';
-    document.getElementById("quantity").value = '';
-    document.getElementById("Produсt").focus();
 
 };
 

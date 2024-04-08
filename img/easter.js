@@ -14,11 +14,14 @@ let nextKey = 0;
 let buttonsContainer = document.getElementById('org_div4');
 
 document.addEventListener("keydown", function (e) {
+    if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") {
+        return;
+    }
     if (e.key == KonamiKode[nextKey]) {
         nextKey++;
         if (nextKey == KonamiKode.length) {
             nextKey = 0;
-            alert("Это был КК (конами код), Вы сами до этого додумались? Перебрали все комбинации и последовательности клавиш? Считерили и заглянули в исходники?");
+            alert("Konami Code? Вы сами до этого додумались? Перебрали все комбинации и последовательности клавиш? Считерили и заглянули в исходники?");
             alert("Ну это уже неважно. Что ж, любитель нажимать на кнопочки, сейчас я расскажу тебе одну поучительную историю.");
             DoFullScreen(document.documentElement);
             document.querySelector('body').innerHTML = '';
@@ -90,13 +93,51 @@ async function displayText(text) {
     location.reload();
 };
 
-document.addEventListener('keydown', function (event) {
-    if (event.key === 'F12') {
-        event.preventDefault();
-        alert('Ты ужасный человек! Тебе это когда-нибудь говорили? Ладно, это шутка, мы ведь даже это не тестировали.');
-        alert('А еще тортик это миф.');
+window.addEventListener("keydown", (event) => {
+    if (event.target.tagName === "INPUT" || event.target.tagName === "TEXTAREA") {
+        return;
     }
-});
+
+    if (event.defaultPrevented) {
+        return;
+    }
+
+    switch (event.key) {
+        case "F1":
+            event.preventDefault();
+            alert('Забавный факт- настоящее название JS это ECMAScript-JS.');
+            break;
+        case "F4":
+            event.preventDefault();
+            alert('Забавный факт- нажмите эту кнопку вместе с клавишей Alt и увидите мультик.');
+            break;
+        case "F7":
+            event.preventDefault();
+            alert('Забавный факт- больше 40 коммитов в основной ветке было сделано только из-за несовершенства сред разработки под Android.');
+            break;
+        case "F9":
+            event.preventDefault();
+            alert('Забавный факт- на написание этой простенькой странички разработчику потребовалось 2 недели, 4 энергетика и одна игра в стиме.');
+            break;
+            case "F10":
+                event.preventDefault();
+                alert("Мультик все-таки будет)")
+                window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+                break;
+        case "F12":
+            event.preventDefault();
+            alert('Ты ужасный человек! Тебе это когда-нибудь говорили? Ладно, это шутка, мы ведь даже это не тестировали.');
+            break;
+        case "Escape":
+            event.preventDefault();
+            alert('Все закончится только когда все закончится.');
+            break;
+        default:
+            return;
+    }
+    document.getElementsByName("body").focus();
+    event.preventDefault();
+}, true);
 
 window.addEventListener('contextmenu', (e) => {
     e.preventDefault();

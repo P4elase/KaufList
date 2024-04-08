@@ -39,6 +39,15 @@ h3{
     text-align: center;
 }
 
+h4 {
+    display: block;
+    margin-block-start: 0.2em;
+    margin-block-end: 0.2em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: normal;
+}
+
 section {
     max-width: 600px;
     margin: 0 auto;
@@ -78,6 +87,14 @@ button {
 
 button:hover {
     background-color: #0056b3;
+}
+
+#btn2:hover{
+    background-color: brown;
+}
+
+#btn3:hover{
+    background-color: brown;
 }
 
 #org_div0{
