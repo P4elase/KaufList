@@ -158,15 +158,10 @@ if ('serviceWorker' in navigator) {
         });
 };
 
-darkMode.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-    let darkModeState = document.body.classList.contains("dark-mode") ? "enabled" : "disabled";
-    setCookie("darkMode", darkModeState, 365);
-    alertCount = alertCount + 1;
-    if (alertCount == 10) {
-        alert("Остановитесь, пожалейте глаза! Так можно и эпилепсию вызвать.");
-        alertCount = 0;
-    }
+document.getElementById('darkModeSwitch').addEventListener('change', function () {
+    document.body.classList.toggle('dark-mode');
+    let darkModeState = document.body.classList.contains('dark-mode') ? 'enabled' : 'disabled';
+    setCookie('darkMode', darkModeState, 365); // Save for 365 days
 });
 
 function setCookie(name, value, days) {
@@ -182,10 +177,10 @@ function setCookie(name, value, days) {
 function getCookie(name) {
     let nameEQ = name + "=";
     let ca = document.cookie.split(';');
-    for(let i=0;i < ca.length;i++) {
+    for (let i = 0; i < ca.length; i++) {
         let c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
     }
     return null;
 };
@@ -199,13 +194,13 @@ function main() {
         orgDiv.after(messageElement);
     }
 
-    let darkModeSetting = getCookie("darkMode");
-    if (darkModeSetting === "enabled") {
-        document.body.classList.add("dark-mode");
-    } else {
-        document.body.classList.remove("dark-mode");
-    }
-
+    document.addEventListener('DOMContentLoaded', function () {
+        let darkModeSetting = getCookie('darkMode');
+        if (darkModeSetting === 'enabled') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('darkModeSwitch').checked = true;
+        }
+    });
 };
 
 window.onload = loadList;
