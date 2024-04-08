@@ -105,21 +105,7 @@ document.addEventListener('keydown', function (event) {
 });
 
 document.addEventListener('keydown', function (event) {
-    if (event.key === 'F3') {
-        event.preventDefault();
-        alert('');
-    }
-});
-
-document.addEventListener('keydown', function (event) {
     if (event.key === 'F4') {
-        event.preventDefault();
-        alert('');
-    }
-});
-
-document.addEventListener('keydown', function (event) {
-    if (event.key === 'F5') {
         event.preventDefault();
         alert('');
     }
