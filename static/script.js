@@ -24,7 +24,7 @@ darkMode.addEventListener("click", () => {
     alertCount = alertCount + 1
     if (alertCount == 10) {
         alert("Остановитесь, пожалейте глаза!")
-        alertCount = 0
+        alertCount = 0;
     }
 
 });
@@ -52,7 +52,7 @@ function CreateList() {
         return;
     }
 
-    else if (localStorage.getItem(product1) !== null) {
+    if (localStorage.getItem(product1) !== null) {
         let action = confirm("Элемент с таким названием уже существует! Вы хотите его заменить?");
         if (action == true) {
             localStorage.setItem(product1, quantity);
@@ -60,16 +60,16 @@ function CreateList() {
             resetInput();
             messageElement.remove();
         }
-        if (action == false) {
+        else {
             resetInput();
             messageElement.remove();
         }
     }
     else {
         localStorage.setItem(product1, quantity);
+        loadList();
         resetInput();
         messageElement.remove();
-        loadList();
     }
 };
 
@@ -102,7 +102,8 @@ function loadList() {
                 loadList();
             });
             existingPElement.appendChild(deleteButton);
-        } else {
+        } 
+        else {
             // Если элемента нет, то создаем новый
             let pElement = document.createElement("p");
             pElement.setAttribute("data-key", key);
@@ -134,7 +135,7 @@ function ClearAll() {
         while (pElements.length > 0) {
             pElements[0].parentNode.removeChild(pElements[0]);
         }
-        main()
+        main();
     }
 
 };
