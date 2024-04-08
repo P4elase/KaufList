@@ -102,7 +102,7 @@ function loadList() {
             // Создаем новую кнопку удаления
             let deleteButton = document.createElement("button");
             deleteButton.textContent = "Удалить";
-            deleteButton.addEventListener("click", function () {
+            deleteButton.addEventListener("click", () => {
                 let actionList = confirm("Удалить текущую запись?");
                 if (actionList == false) {
                     alert("Зачем тогда тыкали на кнопку?");
@@ -114,6 +114,7 @@ function loadList() {
                 loadList();
             });
             existingPElement.appendChild(deleteButton);
+            orgDiv.parentNode.insertBefore(pElement, orgDiv.nextSibling);
         }
         else {
             // Если элемента нет, то создаем новый
@@ -122,7 +123,7 @@ function loadList() {
             pElement.innerHTML = `Продукт: ${key}, Количество: ${value}`;
             let deleteButton = document.createElement("button");
             deleteButton.textContent = "Удалить";
-            deleteButton.addEventListener("click", function () {
+            deleteButton.addEventListener("click", () => {
                 let actionList = confirm("Удалить текущую запись?");
                 if (actionList == false) {
                     alert("Зачем тогда тыкали на кнопку?");
