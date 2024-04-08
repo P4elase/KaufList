@@ -14,6 +14,9 @@ let nextKey = 0;
 let buttonsContainer = document.getElementById('org_div4');
 
 document.addEventListener("keydown", function (e) {
+    if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") {
+        return;
+    }
     if (e.key == KonamiKode[nextKey]) {
         nextKey++;
         if (nextKey == KonamiKode.length) {
@@ -90,75 +93,51 @@ async function displayText(text) {
     location.reload();
 };
 
-document.addEventListener('keydown', function (event) {
-    if (event.key === 'F1') {
-        event.preventDefault();
-        alert('Забавный факт- настоящее название JS это ECMAScript-JS.');
+window.addEventListener("keydown", (event) => {
+    if (event.target.tagName === "INPUT" || event.target.tagName === "TEXTAREA") {
+        return;
     }
-});
 
-document.addEventListener('keydown', function (event) {
-    if (event.key === 'F2') {
-        event.preventDefault();
-        alert('');
+    if (event.defaultPrevented) {
+        return;
     }
-});
 
-document.addEventListener('keydown', function (event) {
-    if (event.key === 'F4') {
-        event.preventDefault();
-        alert('');
+    switch (event.key) {
+        case "F1":
+            event.preventDefault();
+            alert('Забавный факт- настоящее название JS это ECMAScript-JS.');
+            break;
+        case "F4":
+            event.preventDefault();
+            alert('Забавный факт- нажмите эту кнопку вместе с клавишей Alt и увидите мультик.');
+            break;
+        case "F7":
+            event.preventDefault();
+            alert('Забавный факт- больше 40 коммитов в основной ветке было сделано только из-за несовершенства сред разработки под Android.');
+            break;
+        case "F9":
+            event.preventDefault();
+            alert('Забавный факт- на написание этой простенькой странички разработчику потребовалось 2 недели, 4 энергетика и одна игра в стиме.');
+            break;
+            case "F10":
+                event.preventDefault();
+                alert("Мультик все-таки будет)")
+                window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+                break;
+        case "F12":
+            event.preventDefault();
+            alert('Ты ужасный человек! Тебе это когда-нибудь говорили? Ладно, это шутка, мы ведь даже это не тестировали.');
+            break;
+        case "Escape":
+            event.preventDefault();
+            alert('Все закончится только когда все закончится.');
+            break;
+        default:
+            return;
     }
-});
 
-document.addEventListener('keydown', function (event) {
-    if (event.key === 'F6') {
-        event.preventDefault();
-        alert('');
-    }
-});
-
-document.addEventListener('keydown', function (event) {
-    if (event.key === 'F7') {
-        event.preventDefault();
-        alert('');
-    }
-});
-
-document.addEventListener('keydown', function (event) {
-    if (event.key === 'F8') {
-        event.preventDefault();
-        alert('');
-    }
-});
-
-document.addEventListener('keydown', function (event) {
-    if (event.key === 'F9') {
-        event.preventDefault();
-        alert('');
-    }
-});
-
-document.addEventListener('keydown', function (event) {
-    if (event.key === 'F10') {
-        event.preventDefault();
-        alert('');
-    }
-});
-
-document.addEventListener('keydown', function (event) {
-    if (event.key === 'F11') {
-        event.preventDefault();
-        alert('Тортик это миф.');
-    }
-});
-
-document.addEventListener('keydown', function (event) {
-    if (event.key === 'F12') {
-        event.preventDefault();
-        alert('Ты ужасный человек! Тебе это когда-нибудь говорили? Ладно, это шутка, мы ведь даже это не тестировали.');
-    }
-});
+    event.preventDefault();
+}, true);
 
 window.addEventListener('contextmenu', (e) => {
     e.preventDefault();

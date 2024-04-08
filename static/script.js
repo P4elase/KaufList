@@ -147,9 +147,8 @@ function ClearAll() {
         while (pElements.length > 0) {
             pElements[0].parentNode.removeChild(pElements[0]);
         }
-        alert("Список успешно очищен!");
         main();
-
+        alert("Список успешно очищен!");
     }
 
 };
