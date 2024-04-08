@@ -183,7 +183,7 @@ window.onload = loadList;
 main();
 
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/KaufList/static/service-worker.js', { scope: '/KaufList/' }).then(function (registration) {
+    navigator.serviceWorker.register('/KaufList/service-worker.js', { scope: '/KaufList/' }).then(function (registration) {
         console.log('Service Worker registered with scope:', registration.scope);
     })
         .catch(function (error) {
