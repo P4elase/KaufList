@@ -110,8 +110,8 @@ function loadList() {
                 }
                 localStorage.removeItem(key);
                 existingPElement.remove();
-                main();
                 loadList();
+                main();
             });
             existingPElement.appendChild(deleteButton);
         }
@@ -130,8 +130,8 @@ function loadList() {
                 }
                 localStorage.removeItem(key);
                 existingPElement.remove();
-                main();
                 loadList();
+                main();
             });
             pElement.appendChild(deleteButton);
             orgDiv.parentNode.insertBefore(pElement, orgDiv.nextSibling);
@@ -172,8 +172,6 @@ function resetInput() {
 
 function main() {
 
-    loadList();
-
     if (localStorage.length === 0) {
         let messageElement = document.createElement("h3");
         messageElement.textContent = "Ваш список пуст";
@@ -189,4 +187,6 @@ function main() {
 
 };
 
-window.onload = main;
+window.onload = loadList;
+
+main();
