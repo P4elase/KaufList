@@ -138,7 +138,7 @@ function ClearAll() {
     else {
         let action = confirm("Удалить все записи?")
         if (action == false){
-            break;
+            return;
         }
         else{
             localStorage.clear();
