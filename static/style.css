@@ -176,9 +176,16 @@ img {
     object-fit: cover;
 }
 
+.dark-mode a{
+    color: #ffffff;
+}
 .dark-mode a:visited {
     color: #ffffff;
     /* Цвет посещенных ссылок */
+}
+
+a{
+    color: #007bff;
 }
 a:visited{
     color: #007bff;
