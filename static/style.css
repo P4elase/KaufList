@@ -93,6 +93,10 @@ button:hover {
     background-color: brown;
 }
 
+#btn3:hover{
+    background-color: brown;
+}
+
 #org_div0{
     display: flex;
     justify-content: center;
