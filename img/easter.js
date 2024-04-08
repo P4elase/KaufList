@@ -18,7 +18,7 @@ document.addEventListener("keydown", function (e) {
         nextKey++;
         if (nextKey == KonamiKode.length) {
             nextKey = 0;
-            alert("Это был КК (конами код), Вы сами до этого додумались? Перебрали все комбинации и последовательности клавиш? Считерили и заглянули в исходники?");
+            alert("Konami Code? Вы сами до этого додумались? Перебрали все комбинации и последовательности клавиш? Считерили и заглянули в исходники?");
             alert("Ну это уже неважно. Что ж, любитель нажимать на кнопочки, сейчас я расскажу тебе одну поучительную историю.");
             DoFullScreen(document.documentElement);
             document.querySelector('body').innerHTML = '';

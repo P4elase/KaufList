@@ -103,11 +103,17 @@ function loadList() {
             let deleteButton = document.createElement("button");
             deleteButton.textContent = "Удалить";
             deleteButton.addEventListener("click", function () {
-                
-                localStorage.removeItem(key);
-                existingPElement.remove();
-                main();
-                loadList();
+                let action = confirm("Удалить текущую запись?")
+                if (action == false){
+                    return;
+                }
+                else{
+                    localStorage.removeItem(key);
+                    existingPElement.remove();
+                    main();
+                    loadList();
+                }
+
             });
             existingPElement.appendChild(deleteButton);
         }
@@ -119,10 +125,16 @@ function loadList() {
             let deleteButton = document.createElement("button");
             deleteButton.textContent = "Удалить";
             deleteButton.addEventListener("click", function () {
-                localStorage.removeItem(key);
-                pElement.remove();
-                main();
-                loadList();
+                let action = confirm("Удалить текущую запись?")
+                if (action == false){
+                    return;
+                }
+                else{
+                    localStorage.removeItem(key);
+                    existingPElement.remove();
+                    main();
+                    loadList();
+                }
             });
             pElement.appendChild(deleteButton);
             orgDiv.parentNode.insertBefore(pElement, orgDiv.nextSibling);
