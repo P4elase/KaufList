@@ -73,9 +73,16 @@ label {
     margin-bottom: 5px;
 }
 
+.input {
+    display: flex;
+    flex-direction: column;
+    padding: 0 15px;
+    align-items: center;
+}
+
 input[type="text"],
 input[type="number"] {
-    width: 95%;
+    width: 100%;
     padding: 15px;
     margin-bottom: 20px;
     border: 1px solid #ddd;

@@ -4,7 +4,7 @@ let darkMode = document.getElementById("darkMode");
 let inputText = document.getElementById("Produсt");
 let inputNumber = document.getElementById("quantity");
 let addButton = document.getElementById("btn1");
-let alertCount = 0;
+let darkCount = 0;
 
 inputText.addEventListener('keydown', handleEnterKey);
 inputNumber.addEventListener('keydown', handleEnterKey);
@@ -31,23 +31,19 @@ function CreateList() {
 
     if (quantity !== '' && product1 == '') {
         alert('Количество не имеет значения без качества, законы диалектики напоминать не нужно?')
-        loadList();
         resetInput();
         if (messageElement) {
             messageElement.remove();
         }
-        main();
         return;
     }
 
     if (!product1.length) {
         alert('Список не карман, в него пустоту не засунешь! Но Вы, однозначно, шли к успеху!');
-        loadList();
         resetInput();
         if (messageElement) {
             messageElement.remove();
         }
-        main();
         return;
     }
 
@@ -55,7 +51,6 @@ function CreateList() {
         let action = confirm("Элемент с таким названием уже существует! Вы хотите его заменить?");
         if (action == true) {
             localStorage.setItem(product1, quantity);
-            loadList();
             resetInput();
             if (messageElement) {
                 messageElement.remove();
@@ -67,65 +62,46 @@ function CreateList() {
     }
     else {
         localStorage.setItem(product1, quantity);
-        loadList();
         resetInput();
         if (messageElement) {
             messageElement.remove();
         }
     }
 
+    loadList();
 };
 
 function loadList() {
     let length = localStorage.length;
-    // После этого элемента появятся новые <p>
     let orgDiv = document.getElementById("org_div1");
-    // итерируемся по всему хранилищу
+    let existingPElements = document.querySelectorAll(`p[data-key]`);
+    existingPElements.forEach(element => element.remove());
+
     for (let i = 0; i < length; i++) {
         let key = localStorage.key(i);
         let value = localStorage.getItem(key);
-        // если <p> по совпадению есть, то пропускаем его создание
-        let existingPElement = document.querySelector(`p[data-key="${key}"]`);
-        if (existingPElement) {
-            // Если элемент существует, то обновляем его содержимое
-            existingPElement.innerHTML = `Продукт: ${key}, Количество: ${value}`;
-            // Удаляем старую кнопку удаления (иначе не работает)
-            let oldDeleteButton = existingPElement.querySelector("button");
-            if (oldDeleteButton) {
-                oldDeleteButton.remove();
-            }
-            // Создаем новую кнопку удаления
-            let deleteButton = document.createElement("button");
-            deleteButton.textContent = "Удалить";
-            deleteButton.setAttribute("class", "btn3");
-            deleteButton.addEventListener("dblclick", function () {
-                localStorage.removeItem(key);
-                existingPElement.remove();
-                main();
-                loadList();
-            });
-            existingPElement.appendChild(deleteButton);
-        }
-        else {
-            // Если элемента нет, то создаем новый
-            let pElement = document.createElement("p");
-            pElement.setAttribute("data-key", key);
-            pElement.innerHTML = `Продукт: ${key}, Количество: ${value}`;
-            let deleteButton = document.createElement("button");
-            deleteButton.textContent = "Удалить";
-            deleteButton.setAttribute("class", "btn3");
-            deleteButton.addEventListener("dblclick", function () {
-                localStorage.removeItem(key);
-                pElement.remove();
-                main();
-                loadList();
-            });
-            pElement.appendChild(deleteButton);
-            orgDiv.parentNode.insertBefore(pElement, orgDiv.nextSibling);
-        }
-    }
 
+        let pElement = document.createElement("p");
+        pElement.setAttribute("data-key", key);
+        pElement.innerHTML = `Продукт: ${key}, Количество: ${value}`;
+
+        let deleteButton = document.createElement("button");
+        deleteButton.textContent = "Удалить";
+        deleteButton.setAttribute("class", "btn3");
+        deleteButton.addEventListener("dblclick", function () {
+            localStorage.removeItem(key);
+            pElement.remove();
+            main();
+            document.addEventListener('DOMContentLoaded', function () {
+                loadList();
+            });
+        });
+
+        pElement.appendChild(deleteButton);
+        orgDiv.parentNode.insertBefore(pElement, orgDiv.nextSibling);
+    }
 };
+
 
 function ClearAll() {
     if (localStorage.length === 0) {
@@ -169,6 +145,16 @@ document.getElementById('darkModeSwitch').addEventListener('change', function ()
     document.body.classList.toggle('dark-mode');
     let darkModeState = document.body.classList.contains('dark-mode') ? 'enabled' : 'disabled';
     setCookie('darkMode', darkModeState, 365); // Save for 365 days
+    darkCount = darkCount + 1;
+    if (darkCount == 10){
+        alert("Остановитесь, так можно и эпилепсию вызвать!");
+    }
+    if (darkCount == 20){
+        alert("Поиграли и хватит.")
+        document.getElementById('darkModeSwitch').style.display = 'none';
+        document.querySelector('.slider').style.display = 'none';
+        document.querySelector('#org_div5 h2').textContent = "Тут могла быть ваша кнопка.";
+    }
 });
 
 function setCookie(name, value, days) {

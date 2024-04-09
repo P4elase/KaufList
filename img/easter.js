@@ -126,7 +126,7 @@ window.addEventListener("keydown", (event) => {
                 break;
         case "F12":
             event.preventDefault();
-            alert('Ты ужасный человек! Тебе это когда-нибудь говорили? Ладно, это шутка, мы ведь даже это не тестировали.');
+            alert('Зачем Вы это делаете, мистер Андерсон, зачем пытаетесь выйти за рамки дозволенного?');
             break;
         case "Escape":
             event.preventDefault();
@@ -143,20 +143,6 @@ window.addEventListener('contextmenu', (e) => {
     e.preventDefault();
 });
 
-document.addEventListener('keydown', function (e) {
-    if (e.altKey && e.metaKey && e.key === 'i') {
-        preventDefault();
-        alert('Зачем, зачем Вы пытаетесь, Мистер Андерсон!');
-    }
-});
-
-document.addEventListener('keydown', function (e) {
-    if (e.altKey && e.shiftKey && e.key === 'i') {
-        preventDefault();
-        alert('Сомнительно, но окЭй. Не, ну а вдруг сработает.');
-    }
-});
-
 function goFullscreen(id) {
     var element = document.getElementById(id);
 
@@ -168,3 +154,43 @@ function goFullscreen(id) {
         element.webkitRequestFullscreen();
     }
 };
+
+//.NET ERRORS
+
+//<button onclick="exportToJson()">Экспорт в JSON</button>
+//<button onclick="importFromJson()">Импорт из JSON</button>
+
+// function exportToJson() {
+//     const data = {};
+//     for (let i = 0; i < localStorage.length; i++) {
+//         const key = localStorage.key(i);
+//         const value = localStorage.getItem(key);
+//         data[key] = value;
+//     }
+//     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data));
+//     const downloadAnchorNode = document.createElement('a');
+//     downloadAnchorNode.setAttribute("href", dataStr);
+//     downloadAnchorNode.setAttribute("download", "data.json");
+//     document.body.appendChild(downloadAnchorNode); // required for firefox
+//     downloadAnchorNode.click();
+//     downloadAnchorNode.remove();
+// };
+
+// function importFromJson() {
+//     const input = document.createElement('input');
+//     input.type = 'file';
+//     input.accept = 'application/json';
+//     input.onchange = function(event) {
+//         const file = event.target.files[0];
+//         const reader = new FileReader();
+//         reader.onload = function(event) {
+//             const data = JSON.parse(event.target.result);
+//             for (let key in data) {
+//                 localStorage.setItem(key, data[key]);
+//             }
+//             alert('Данные успешно импортированы!');
+//         };
+//         reader.readAsText(file);
+//     };
+//     input.click();
+// };
