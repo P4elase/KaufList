@@ -4,6 +4,7 @@
     "start_url": "https://p4elase.github.io/KaufList/",
     "display": "standalone",
     "display_override": [
+        "standalone",
         "window-controls-overlay"
     ],
     "protocol_handlers": [
