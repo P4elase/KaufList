@@ -162,9 +162,10 @@ document.getElementById('install').addEventListener('click', (e) => {
 });
 
 window.addEventListener('appinstalled', () => {
-    // Скрываем кнопку установки после установки PWA
+
     document.getElementById('install').setAttribute('hidden', '');
 });
+
 document.getElementById('darkModeSwitch').addEventListener('change', function () {
     document.body.classList.toggle('dark-mode');
     let darkModeState = document.body.classList.contains('dark-mode') ? 'enabled' : 'disabled';
@@ -222,4 +223,4 @@ function main() {
 
 window.onload = loadList;
 
-main();
+window.onload = main;
