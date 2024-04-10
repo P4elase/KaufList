@@ -5,6 +5,7 @@ let inputText = document.getElementById("Produсt");
 let inputNumber = document.getElementById("quantity");
 let addButton = document.getElementById("btn1");
 let darkCount = 0;
+let deferredPrompt;
 
 inputText.addEventListener('keydown', handleEnterKey);
 inputNumber.addEventListener('keydown', handleEnterKey);
@@ -141,15 +142,35 @@ if ('serviceWorker' in navigator) {
         });
 };
 
+window.addEventListener('beforeinstallprompt', (e) => {
+ e.preventDefault();
+ deferredPrompt = e;
+ showInstallPrompt();
+});
+
+function showInstallPrompt() {
+ if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        console.log('Пользователь принял запрос на установку PWA');
+      } else {
+        console.log('Пользователь отклонил запрос на установку PWA');
+      }
+      deferredPrompt = null;
+    });
+ }
+};
+
 document.getElementById('darkModeSwitch').addEventListener('change', function () {
     document.body.classList.toggle('dark-mode');
     let darkModeState = document.body.classList.contains('dark-mode') ? 'enabled' : 'disabled';
     setCookie('darkMode', darkModeState, 365); // Save for 365 days
     darkCount = darkCount + 1;
-    if (darkCount == 10){
+    if (darkCount == 10) {
         alert("Остановитесь, так можно и эпилепсию вызвать!");
     }
-    if (darkCount == 20){
+    if (darkCount == 20) {
         alert("Поиграли и хватит.")
         document.getElementById('darkModeSwitch').style.display = 'none';
         document.querySelector('.slider').style.display = 'none';
