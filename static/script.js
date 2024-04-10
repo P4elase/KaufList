@@ -165,7 +165,7 @@ function showInstallPrompt() {
 document.getElementById('darkModeSwitch').addEventListener('change', function () {
     document.body.classList.toggle('dark-mode');
     let darkModeState = document.body.classList.contains('dark-mode') ? 'enabled' : 'disabled';
-    setCookie('darkMode', darkModeState, 365); // Save for 365 days
+    setCookie('darkMode', darkModeState, 365);
     darkCount = darkCount + 1;
     if (darkCount == 10) {
         alert("Остановитесь, так можно и эпилепсию вызвать!");
