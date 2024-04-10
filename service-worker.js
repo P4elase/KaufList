@@ -11,6 +11,8 @@ self.addEventListener('install', function (event) {
                 '/KaufList/img/bag-heart.svg',
                 '/KaufList/img/favicon.ico',
                 '/KaufList/manifest.json',
+                '/KaufList/screens/android-launchericon-192-192.png',
+                '/KaufList/screens/android-launchericon-512-512.png',
                 // Add other assets your app needs
             ]);
         })
