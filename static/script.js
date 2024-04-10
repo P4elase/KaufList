@@ -143,25 +143,28 @@ if ('serviceWorker' in navigator) {
 };
 
 window.addEventListener('beforeinstallprompt', (e) => {
- e.preventDefault();
- deferredPrompt = e;
- showInstallPrompt();
+    e.preventDefault();
+    deferredPrompt = e;
+    document.getElementById('install').removeAttribute('hidden');
 });
 
-function showInstallPrompt() {
- if (deferredPrompt) {
+document.getElementById('install').addEventListener('click', (e) => {
+    e.target.setAttribute('hidden', '');
     deferredPrompt.prompt();
     deferredPrompt.userChoice.then((choiceResult) => {
-      if (choiceResult.outcome === 'accepted') {
-        console.log('Пользователь принял запрос на установку PWA');
-      } else {
-        console.log('Пользователь отклонил запрос на установку PWA');
-      }
-      deferredPrompt = null;
+        if (choiceResult.outcome === 'accepted') {
+            console.log('Пользователь принял запрос на установку PWA');
+        } else {
+            console.log('Пользователь отклонил запрос на установку PWA');
+        }
+        deferredPrompt = null;
     });
- }
-};
+});
 
+window.addEventListener('appinstalled', () => {
+    // Скрываем кнопку установки после установки PWA
+    document.getElementById('install').setAttribute('hidden', '');
+});
 document.getElementById('darkModeSwitch').addEventListener('change', function () {
     document.body.classList.toggle('dark-mode');
     let darkModeState = document.body.classList.contains('dark-mode') ? 'enabled' : 'disabled';
