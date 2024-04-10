@@ -10,6 +10,7 @@ self.addEventListener('install', function (event) {
                 '/KaufList/img/end.png',
                 '/KaufList/img/bag-heart.svg',
                 '/KaufList/img/favicon.ico',
+                '/KaufList/manifest.json',
                 // Add other assets your app needs
             ]);
         })
