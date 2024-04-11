@@ -37,6 +37,7 @@ function CreateList() {
             messageElement.remove();
         }
         loadList();
+        main();
         return;
     }
 
@@ -47,6 +48,7 @@ function CreateList() {
             messageElement.remove();
         }
         loadList();
+        main();
         return;
     }
 
