@@ -33,18 +33,12 @@ function CreateList() {
     if (quantity !== '' && product1 == '') {
         alert('Количество не имеет значения без качества, законы диалектики напоминать не нужно?')
         resetInput();
-        if (messageElement) {
-            messageElement.remove();
-        }
         return;
     }
 
     if (!product1.length) {
         alert('Список не карман, в него пустоту не засунешь! Но Вы, однозначно, шли к успеху!');
         resetInput();
-        if (messageElement) {
-            messageElement.remove();
-        }
         return;
     }
 
