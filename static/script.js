@@ -221,6 +221,6 @@ function main() {
     });
 };
 
-window.onload = loadList;
+loadList();
 
-window.onload = main;
+main();
